@@ -38,6 +38,7 @@
             class="form-control"
             id="inputPrice"
             placeholder="Ціна"
+            style='width: 150%;'
           />
 
         </div>
@@ -49,7 +50,7 @@
           <label for="monthRange" class="form-label">Кількість платежів</label>
             <div class='container' style = "display: inline-flex; width: 100%; ">
                 <h6 style = "margin-left: -2%;">1</h6>
-                <h6 style = "margin-left: 98%">9</h6>
+                <h6 style = "margin-left: 152%">9</h6>
             </div>
             <div class="range-wrap">
                 <input
@@ -61,6 +62,7 @@
                     max="9"
                     step="1"
                     id="monthRange"
+                    style='width: 150%;'
                 />
                 <output class="bubble"></output>
             </div>
@@ -72,6 +74,8 @@
               value='1152'
               class="form-control"
               id="result"
+              style='width: 150%;'
+
               readonly
             />
 
@@ -98,8 +102,8 @@ const handleChange = (e) => {
 function setBubble(range, bubble) {
     const val = range.value;
     const min = range.min ? range.min : 0;
-    const max = range.max ? range.max : 100;
-    const newVal = Number(((val - min) * 100) / (max - min));
+    const max = range.max ? range.max : 150;
+    const newVal = Number(((val - min) * 150) / (max - min));
     bubble.innerHTML = val;
   
     // Sorta magic numbers based on size of the native UI thumb
@@ -126,11 +130,11 @@ setBubble(range, bubble);
         width: 30vw;
         height: 1vh;
     }    
-        #formWrapper {
-            overflow: hidden;
-      background: #48A1B7;
-      color: white;
-    width: 100%;
+    #formWrapper {
+    overflow: hidden;
+    background: #48A1B7;
+    color: white;
+    width: 90%;
     height: 100%;
     align-self: center;
     padding: 10px;
@@ -143,7 +147,6 @@ setBubble(range, bubble);
     background: #a3d493;
     color: white;
     padding: 4px 12px;
-    margin-top: 2.5vh;
     position: absolute;
     border-radius: 4px;
     left: 50%;
