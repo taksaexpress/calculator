@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <body  style ="background: #48A1B7;overflow: hidden;">
+  <body  style ="background: #ffffff;overflow: hidden;">
     <!-- Instead of the head start -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,15 +22,15 @@
 
     <!-- Form wrapper - 100% width and height -->
 
-    <div id="formWrapper"  style ="background: #48A1B7;overflow: hidden; margin-left: -10%;">
+    <div id="formWrapper"  style ="overflow: hidden; margin-left: -10%;">
     <!-- Calculator Form -->
 
-      <div name="calcForm" style ="background: #48A1B7;">
+      <div name="calcForm" >
     <!-- First input - goods price Form -->
         <div class="form-group">
     
     <!-- The input -->
-          <label for="inputPrice">Ціна товару</label>
+          <label for="inputPrice" style='text-color: #2b28b8;'>Ціна товару</label>
           <input
             type="number"
             value='1000'
@@ -38,7 +38,7 @@
             class="form-control"
             id="inputPrice"
             placeholder="Ціна"
-            style='width: 150%;'
+            style='width: 150%;border: 2px solid #FF2222;color: #2b28b8;'
           />
 
         </div>
@@ -47,7 +47,7 @@
     <!-- Label, min and max, range and bubble  -->
 
         <div class="form-group">
-          <label for="monthRange" class="form-label">Кількість платежів</label>
+          <label for="monthRange" class="form-label" style='color: #2b28b8;'>Кількість платежів</label>
             <div class='container' style = "display: inline-flex; width: 100%; ">
                 <h6 style = "margin-left: -2%;">1</h6>
                 <h6 style = "margin-left: 152%">9</h6>
@@ -74,7 +74,9 @@
               value='1152'
               class="form-control"
               id="result"
-              style='width: 150%;'
+      
+        
+        style='width: 150%;border: 2px solid #FF2222;color: #2b28b8;'
 
               readonly
             />
@@ -126,25 +128,32 @@ setBubble(range, bubble);
     <!-- CSS Styles -->
 
     <style>
+
     .calcForm {
         width: 30vw;
         height: 1vh;
+        background-color: #ffffff;
+        color: #2b28b8;
     }    
     #formWrapper {
     overflow: hidden;
-    background: #48A1B7;
-    color: white;
+    background: #ffffff;
     width: 100%;
     height: 100%;
+        color: #2b28b8;
     align-self: center;
     padding: 10px;
     margin: 10px;
     justify-content: center;
     display: flex;
+    font-size: 14px;
+    border-style: solid;
+    border-color: #FFFFFF;
+    border-width: 5px 25px; 
 }
 
 .bubble {
-    background: #a3d493;
+    background: #2b28b8;
     color: white;
     padding: 4px 12px;
     position: absolute;
@@ -169,19 +178,19 @@ setBubble(range, bubble);
     width: 100%;
   }
   .range::-webkit-slider-thumb {
-    background: #a3d493;
+    background: #2b28b8;
   }
   
   .range::-moz-range-thumb {
-    background: #a3d493;
+    background: #2b28b8;
   }
   
   .range::-ms-thumb {
-    background: #a3d493;
+    background: #2b28b8;
   }
 
   html {
-    background: #48A1B7 !important;
+    background: #ffffff !important;
    }
     </style>
   </body>
