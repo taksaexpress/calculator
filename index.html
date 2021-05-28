@@ -4,7 +4,7 @@
   <body  style ="background: #ffffff;overflow: hidden;">
     <!-- Instead of the head start -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#000000" />
     <link
       href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
@@ -35,10 +35,10 @@
             type="number"
             value='1000'
             onchange="handleChange(this.value)"
-            class="form-control"
+            class="form-control wide colored"
             id="inputPrice"
             placeholder="Ціна"
-            style='width: 150%;border: 2px solid #FF2222;color: #2b28b8;'
+            style=''
           />
 
         </div>
@@ -49,8 +49,8 @@
         <div class="form-group">
           <label for="monthRange" class="form-label" style='color: #2b28b8;'>Кількість платежів</label>
             <div class='container' style = "display: inline-flex; width: 100%; ">
-                <h6 style = "margin-left: -2%;">1</h6>
-                <h6 style = "margin-left: 152%">9</h6>
+                <h6 class = "min" style = "margin-left: -2%;">1</h6>
+                <h6 class = "max" style = "margin-left: 152%">9</h6>
             </div>
             <div class="range-wrap">
                 <input
@@ -72,12 +72,8 @@
             <input
               type="number"
               value='1152'
-              class="form-control"
+              class="form-control wide colored"
               id="result"
-      
-        
-        style='width: 150%;border: 2px solid #FF2222;color: #2b28b8;'
-
               readonly
             />
 
@@ -128,7 +124,12 @@ setBubble(range, bubble);
     <!-- CSS Styles -->
 
     <style>
-
+    .min {
+      margin-left: -2%;
+    } 
+    .max {
+      margin-left: 152%;
+    }
     .calcForm {
         width: 30vw;
         height: 1vh;
@@ -150,6 +151,44 @@ setBubble(range, bubble);
     border-style: solid;
     border-color: #FFFFFF;
     border-width: 5px 25px; 
+}
+.wide {
+  width: 150%;
+}
+.colored {
+  border: 2px solid #FF2222;
+  color: #2b28b8;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 600px) {
+  .outerContainer {
+    height: 100%;
+  }
+
+  .container {
+    width: 100%;
+    height: 100%;
+  }
+  .wide {
+    width: 100%;
+  }.wide {
+    width: 100%;
+  }
+  .range {
+    width: 100% !important;
+  }
+  .max {
+    margin-left: 100% !important ;
+  }
+  
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1000px) {
+  .container {
+    width: 100%;
+  }
+  
+
 }
 
 .bubble {
