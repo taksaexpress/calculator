@@ -83,7 +83,7 @@
     <!-- JavaScript script -->
     <script type="text/javascript">
 const monthly = 182.5;
-const calculate = (number, month) => Math.round((number / 2) / month + ((number / 100) * monthly) / 12);
+const calculate = (number, month) => Math.round(number / month + ((number / 100) * monthly) / 12);
 
 var data = {
     month: 1,
