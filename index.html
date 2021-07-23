@@ -50,7 +50,7 @@
           <label for="monthRange" class="form-label" style='color: #2b28b8;'>Кількість платежів</label>
             <div class='container' style = "display: inline-flex; width: 100%; ">
                 <h6 class = "min" style = "margin-left: -2%;">1</h6>
-                <h6 class = "max" style = "margin-left: 152%">9</h6>
+                <h6 class = "max" style = "margin-left: 152%">4</h6>
             </div>
             <div class="range-wrap">
                 <input
@@ -59,7 +59,7 @@
                     onchange="handleChange(this.value)"
                     class="form-range range" 
                     min="1"
-                    max="9"
+                    max="4"
                     step="1"
                     id="monthRange"
                     style='width: 150%;'
@@ -68,10 +68,10 @@
             </div>
         </div>
         <!-- The output with calculated montly payment -->
-            <label for="inputPrice">Середня щомісячна плата</label>
+            <label for="inputPrice">Середня щоденна плата</label>
             <input
               type="number"
-              value='1152'
+              value='38'
               class="form-control wide colored"
               id="result"
               readonly
@@ -84,12 +84,12 @@
     <script type="text/javascript">
 const monthly = 182.5;
 const calculate = (number, month) => Math.round(
-  (number / month +
+  ((number / month +
       ((number ) *( monthly/ 100)) / 12 + 
         number / month + 
           ((number/month ) *( monthly/ 100))
             / 12)
-              /2);
+              /2)/30);
 
 var data = {
     month: 1,
@@ -211,7 +211,7 @@ setBubble(range, bubble);
     position: absolute;
     width: 2px;
     height: 2px;
-    background: #a3d493;
+    background: #a3d443;
     top: -1px;
     left: 50%;
   }
