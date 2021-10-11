@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <body  style ="background: #ffffff;overflow-x: hidden;">
+  <body  style ="background: #ffffff;">
     <!-- Instead of the head start -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,8 +21,8 @@
     <!-- Instead of the  body start -->
 
     <!-- Form wrapper - 100% width and height -->
-
-    <div id="formWrapper"  style ="overflow-x: hidden; margin-left: -10%;">
+    <div class="wrapper">
+    <div id="formWrapper"  style ="margin-left: -10%;">
     <!-- Calculator Form -->
 
       <div name="calcForm" >
@@ -111,6 +111,7 @@
           </tbody>
       
   </table>
+        </div>
         </div>
     </div>
     </div>
@@ -320,7 +321,15 @@ let tableRow = document.createElement('tr');
   
 
 }
-
+.wrapper {
+margin-right: auto; /* 1 */
+margin-left: auto; /* 1 */
+max-width:1160px; /* 2 */
+padding-right: 10px; /* 3 */
+padding-left: 10px; /* 3 */
+  max-width: 50vw;
+  max-height: 40vh;
+}
 .bubble {
     background: #2b28b8;
     color: white;
