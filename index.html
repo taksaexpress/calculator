@@ -28,108 +28,229 @@
       <div name="calcForm" >
     <!-- First input - goods price Form -->
         <div class="form-group">
-    
+          <h1 style='text-color: #2b28b8; font-size: 76;margin-bottom:5vh;'>Вводные данные</h1>
+            
     <!-- The input -->
-          <label for="inputPrice" style='text-color: #2b28b8;'>Ціна товару</label>
+          <label for="inputPrice" style='text-color: #2b28b8;'>Цена товара</label>
           <input
             type="number"
-            value='1000'
+            placeholder='5000'
             onchange="handleChange(this.value)"
             class="form-control wide colored"
             id="inputPrice"
-            placeholder="Ціна"
-            style=''
           />
 
         </div>
+        <div class="form-group">
 
+        <label for="inputAvance" style='text-color: #2b28b8;'>Аванс</label>
+          <input
+            type="number"
+            placeholder='1000'
+            onchange="handleChange(this.value)"
+            class="form-control wide colored"
+            id="inputAvance"
+          />
+
+        </div>
+        <div class="form-group">
+
+            <label for="stavka" style='text-color: #2b28b8;'>Ставка</label>
+              <input
+                type="number"
+                value='0.5'
+                onchange="handleChange(this.value)"
+                class="form-control wide colored"
+                id="stavka"
+                placeholder="Ставка"
+                
+                disabled
+              />
+    
+            </div>
+            <div class="form-group">
+
+                <label for="srok" style='text-color: #2b28b8;'>Срок кредита (месяцев)</label>
+                  <input
+                    type="number"
+                    placeholder='10'
+                    onchange="handleChange(this.value)"
+                    class="form-control wide colored"
+                    id="srok"
+                  />
+                  <button type="button" class="btn btn-primary" style="margin-top: 5vh" onClick="document.getElementById('hider').style=`display:auto`">Рассчитать</button>
+                </div>
     <!-- Second input - The number of months -->
     <!-- Label, min and max, range and bubble  -->
+    <div style="display: none;" id='hider'>
+    <h1 style='text-color: #2b28b8; font-size: 76; margin-top:5vh;margin-bottom:5vh;'>Результат</h1>
 
         <div class="form-group">
-          <label for="monthRange" class="form-label" style='color: #2b28b8;'>Кількість платежів</label>
-            <div class='container' style = "display: inline-flex; width: 100%; ">
-                <h6 class = "min" style = "margin-left: -2%;">1</h6>
-                <h6 class = "max" style = "margin-left: 152%">4</h6>
-            </div>
-            <div class="range-wrap">
-                <input
-                    type="range"
-                    value="1"
-                    onchange="handleChange(this.value)"
-                    class="form-range range" 
-                    min="1"
-                    max="4"
-                    step="1"
-                    id="monthRange"
-                    style='width: 150%;'
-                />
-                <output class="bubble"></output>
-            </div>
         </div>
         <!-- The output with calculated montly payment -->
-            <label for="inputPrice">Середній щоденний платіж</label>
+        <label for="inputPrice">Сумма кредита</label>
             <input
               type="number"
-              value='38'
+              placeholder=""
               class="form-control wide colored"
-              id="result"
+              id="result_summa_kredita"
               readonly
             />
+            <label class="form-label" style='color: #2b28b8;'>График платежей</label>
+        <table>
+          <thead>
+              <th style="padding: 10px;">№ Период</th>
+              <th style="padding: 10px;">Дата платежа</th>
+              <th style="padding: 10px;">Колличество дней за пероид</th>
+              <th style="padding: 10px;">Сумма платежа</th>
+              <th style="padding: 10px;">Тело платежа</th>
+              <th style="padding: 10px;">Проценты платежа</th>
+          </thead>
+          <tbody id='table-body'>
 
-      </div>
+          </tbody>
+      
+  </table>
+        </div>
+    </div>
     </div>
 
     <!-- JavaScript script -->
     <script type="text/javascript">
-const monthly = 182.5;
-const calculate = (number, month) => Math.round(
-  ((number / month +
-      ((number ) *( monthly/ 100)) / 12 + 
-        number / month + 
-          ((number/month ) *( monthly/ 100))
-            / 12)
-              /2)/30);
-
-var data = {
-    month: 1,
-    number: 1000
-}
-const handleChange = (e) => {
-    month = document.getElementById("monthRange").value
+    inputAvance = document.getElementById("inputAvance").value
+    stavka = document.getElementById("stavka").value
+    srok = document.getElementById("srok").value
     num = document.getElementById("inputPrice").value
-    console.log(month, num)
-    result = document.getElementById("result")
-    result.value = calculate(num, month)
+    console.log(inputAvance, stavka, srok, num)
+    summa_kreditovaniya = num - inputAvance
+    result_summa_kredita = document.getElementById("result_summa_kredita")
+    result_summa_kredita.value = summa_kreditovaniya
+    // result = document.getElementById("result")
+    // result.value = calculate(num, month)
+const handleChange = (e) => {
+    inputAvance = document.getElementById("inputAvance").value
+    stavka = document.getElementById("stavka").value
+    srok = document.getElementById("srok").value
+    num = document.getElementById("inputPrice").value
+    console.log(inputAvance, stavka, srok, num)
+    summa_kreditovaniya = num - inputAvance
+    result_summa_kredita = document.getElementById("result_summa_kredita")
+    result_summa_kredita.value = summa_kreditovaniya
+    getTable(summa_kreditovaniya, srok, stavka, Math.round(result_summa_kredita.value/srok))
+
 };
 
-function setBubble(range, bubble) {
-    const val = range.value;
-    const min = range.min ? range.min : 0;
-    const max = range.max ? range.max : 150;
-    const newVal = Number(((val - min) * 150) / (max - min));
-    bubble.innerHTML = val;
-  
-    // Sorta magic numbers based on size of the native UI thumb
-    bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
-  }
-const wrap = document.querySelectorAll(".range-wrap")[0];
-const range = wrap.querySelector(".range");
-const bubble = wrap.querySelector(".bubble");
-console.log(range)
 
-range.addEventListener("input", () => {
-setBubble(range, bubble);
-});
-setBubble(range, bubble);
-
-
+function daysInMonth (month, year) {
+    return new Date(year, month, 0).getDate();
+}
+   const getTable = (num,month, percent, monthly_pay ) => {
+    const myTableBody = document.getElementById("table-body");
+    let all_num = num;
     
-    </script>
+    let first = new Date()
+    let dates = []
+    let diff = []
+    let body = []
+    let percents_amounts = []
+    let last = new Date(first)
+    for(let i = 0; i < month; i++) {
+      dates.push(new Date(last))
+      dates[i].setDate(dates[i].getDate() + daysInMonth(dates[i].getMonth(), dates[i].getFullYear()))
+      diff.push(daysInMonth(dates[i].getMonth(), dates[i].getFullYear()))
+      body.push(num);
+      num -= monthly_pay;
+      percents_amounts.push(body[body.length-1]*(diff[diff.length-1]*0.5)/100)
+      last = new Date(dates[i])
+    }
 
+    myTableBody.innerHTML= ""
+
+       for (let i = 0; i < month; i++) {
+            let tableRow = document.createElement('tr');
+            let listItem;
+            listItem = document.createElement('td');
+            listItem.classList.add('listItem');
+            listItem.innerText = i+1;
+            tableRow.appendChild(listItem);
+
+            listItem = document.createElement('td');
+            listItem.classList.add('listItem');
+            listItem.innerText = dates[i].toLocaleDateString();
+            tableRow.appendChild(listItem);
+            
+
+            listItem = document.createElement('td');
+            listItem.classList.add('listItem');
+            listItem.innerText = diff[i];
+            tableRow.appendChild(listItem);
+
+            listItem = document.createElement('td');
+            listItem.classList.add('listItem');
+            listItem.innerText = Math.round(monthly_pay + percents_amounts[i]);
+            tableRow.appendChild(listItem);
+
+            listItem = document.createElement('td');
+            listItem.classList.add('listItem');
+            listItem.innerText = monthly_pay;
+            tableRow.appendChild(listItem);
+
+            listItem = document.createElement('td');
+            listItem.classList.add('listItem');
+            listItem.innerText = Math.round(percents_amounts[i]);
+            tableRow.appendChild(listItem);
+
+
+            myTableBody.appendChild(tableRow);
+}
+const reducer = (previousValue, currentValue) => previousValue + currentValue;
+            
+
+let tableRow = document.createElement('tr');
+            listItem = document.createElement('td');
+            listItem.classList.add('listItem');
+            listItem.innerText = "Всего";
+
+            tableRow.appendChild(listItem);
+            listItem = document.createElement('td');
+            listItem.classList.add('listItem');
+            listItem.innerText = "";
+
+            tableRow.appendChild(listItem);
+            
+            listItem = document.createElement('td');
+
+            listItem.classList.add('listItem');
+            listItem.innerText = diff.reduce(reducer);
+            tableRow.appendChild(listItem);
+
+            listItem = document.createElement('td');
+            listItem.classList.add('listItem');
+            listItem.innerText = Math.round(all_num + percents_amounts.reduce(reducer));
+            tableRow.appendChild(listItem);
+
+            listItem = document.createElement('td');
+            listItem.classList.add('listItem');
+            listItem.innerText = Math.round(all_num);
+            tableRow.appendChild(listItem);
+
+            listItem = document.createElement('td');
+            listItem.classList.add('listItem');
+            listItem.innerText = Math.round(percents_amounts.reduce(reducer));
+            tableRow.appendChild(listItem);
+
+
+            myTableBody.appendChild(tableRow);
+
+   }
+    </script>
+    
     <!-- CSS Styles -->
 
     <style>
+    table, th, td {
+        border: 1px solid black;
+    }
     .min {
       margin-left: -2%;
     } 
@@ -141,7 +262,10 @@ setBubble(range, bubble);
         height: 1vh;
         background-color: #ffffff;
         color: #2b28b8;
-    }    
+    }
+    input {
+      max-width: 20vw;
+    }
     #formWrapper {
     overflow: hidden;
     background: #ffffff;
