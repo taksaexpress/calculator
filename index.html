@@ -100,8 +100,8 @@
         <table>
           <thead>
               <th style="padding: 6px;">№ Период</th>
-              <th style="padding: 6px;">Дата</th>
-              <th style="padding: 6px;">Дни</th>
+              <th style="padding: 14px;">Дата</th>
+              <th style="padding: 10px;">Дни</th>
               <th style="padding: 6px;">Сумма</th>
               <th style="padding: 6px;">Тело</th>
               <th style="padding: 6px;">Проценты</th>
@@ -177,7 +177,7 @@ function daysInMonth (month, year) {
 
             listItem = document.createElement('td');
             listItem.classList.add('listItem');
-            listItem.innerText = dates[i].toLocaleDateString();
+            listItem.innerText = dates[i].toLocaleDateString("en-UK").replace(/\//g, '.');
             tableRow.appendChild(listItem);
             
 
