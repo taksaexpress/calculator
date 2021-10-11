@@ -99,12 +99,12 @@
             <label class="form-label" style='color: #2b28b8;'>График платежей</label>
         <table>
           <thead>
-              <th style="padding: 10px;">№ Период</th>
-              <th style="padding: 10px;">Дата платежа</th>
-              <th style="padding: 10px;">Колличество дней за пероид</th>
-              <th style="padding: 10px;">Сумма платежа</th>
-              <th style="padding: 10px;">Тело платежа</th>
-              <th style="padding: 10px;">Проценты платежа</th>
+              <th style="padding: 2px;">№ Период</th>
+              <th style="padding: 2px;">Дата платежа</th>
+              <th style="padding: 2px;">Колличество дней за пероид</th>
+              <th style="padding: 2px;">Сумма платежа</th>
+              <th style="padding: 2px;">Тело платежа</th>
+              <th style="padding: 2px;">Проценты платежа</th>
           </thead>
           <tbody id='table-body'>
 
@@ -268,7 +268,6 @@ let tableRow = document.createElement('tr');
       max-width: 20vw;
     }
     #formWrapper {
-    overflow: hidden;
     background: #ffffff;
     width: 100%;
     height: 100%;
@@ -327,8 +326,8 @@ margin-left: auto; /* 1 */
 max-width:1160px; /* 2 */
 padding-right: 10px; /* 3 */
 padding-left: 10px; /* 3 */
-  max-width: 50vw;
-  max-height: 40vh;
+  max-width: 20vw !important; 
+  max-height: 20vh !important; 
 }
 .bubble {
     background: #2b28b8;
